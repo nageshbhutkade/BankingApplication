@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import firstapp.stepone.Model.Account;
 import firstapp.stepone.Model.mapper.AccountMapper;
 import firstapp.stepone.dto.AccountDto;
+import firstapp.stepone.exception.AccountNotFoundException;
 import firstapp.stepone.repository.AccountRepository;
 import firstapp.stepone.service.AccountService;
 
@@ -54,7 +55,7 @@ public class AccountServiceImpl implements AccountService{
 	@Override
 	public AccountDto getAccount(Long id) {
 		// TODO Auto-generated method stub
-		Account accont = accountrepository.findById(id).orElseThrow(() -> new RuntimeException("Ha Account nahi milat"));
+		Account accont = accountrepository.findById(id).orElseThrow(() -> new AccountNotFoundException("Ha Account nahi milat"));
 		return AccountMapper.maptoAccountDto(accont);
 	}
 
