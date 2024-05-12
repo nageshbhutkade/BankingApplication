@@ -3,8 +3,9 @@ package firstapp.stepone.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,11 +18,18 @@ import firstapp.stepone.service.EmployeeService;
 @RestController
 public class EmployeeController {
 	
+	Logger logger = LoggerFactory.getLogger(EmployeeController.class);
+	
 	@Autowired
 	EmployeeService employeeservice;
 	
 	@GetMapping("/")
 	public List<Employee> getAllEmployee() {
+		logger.trace("Log level: TRACE"); 
+        logger.info("Log level: INFO"); 
+        logger.debug("Log level: DEBUG"); 
+        logger.error("Log level: ERROR"); 
+        logger.warn("Log level: WARN"); 
 		return employeeservice.findAllEmployee();
 	}
 	
